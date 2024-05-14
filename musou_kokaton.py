@@ -251,7 +251,6 @@ class Score:
         screen.blit(self.image, self.rect)
 
 
-<<<<<<< HEAD
 class Gravity(pg.sprite.Sprite):
     def __init__(self, life:int):
 
@@ -268,7 +267,6 @@ class Gravity(pg.sprite.Sprite):
             self.kill()
 
 
-=======
 class Shield(pg.sprite.Sprite):
     """
     防御壁に関するクラス
@@ -301,8 +299,7 @@ class Shield(pg.sprite.Sprite):
         if self.life < 0:
             self.kill()
     
-    
->>>>>>> C0A23154/feature5
+
 def main():
     pg.display.set_caption("真！こうかとん無双")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -314,11 +311,8 @@ def main():
     beams = pg.sprite.Group()
     exps = pg.sprite.Group()
     emys = pg.sprite.Group()
-<<<<<<< HEAD
     gravity = pg.sprite.Group()
-=======
     shields = pg.sprite.Group()
->>>>>>> C0A23154/feature5
 
     tmr = 0
     clock = pg.time.Clock()
@@ -329,20 +323,17 @@ def main():
                 return 0
             if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
                 beams.add(Beam(bird))
-<<<<<<< HEAD
             if event.type == pg.KEYDOWN and event.key == pg.K_g and score.value >= 200:  # キー「ｇ」が押される　かつ、　スコアが２００以上なら
                 print(score.value)
                 score.value -= 200
                 gravity.add(Gravity(400))
-            if event.type == pg.KEYDOWN and event.key == pg.K_RSHIFT and score.value >= 100:
+            if event.type == pg.KEYDOWN and event.key == pg.K_k and score.value >= 100:
                 bird.hyper_life = 500
                 score.value -= 100
-=======
-            if event.type == pg.KEYDOWN and event.key == pg.K_RSHIFT and score.value >= 0 and not shields: # シールド発動条件
-                score.value -= 0 # スコア50消費
+            if event.type == pg.KEYDOWN and event.key == pg.K_RSHIFT and score.value >= 50 and not shields: # シールド発動条件
+                score.value -= 50 # スコア50消費
                 shields.add(Shield(bird, 400)) # 400フレーム
 
->>>>>>> C0A23154/feature5
         screen.blit(bg_img, [0, 0])
 
         if tmr%200 == 0:  # 200フレームに1回，敵機を出現させる
@@ -362,7 +353,6 @@ def main():
             exps.add(Explosion(bomb, 50))  # 爆発エフェクト
             score.value += 1  # 1点アップ
 
-<<<<<<< HEAD
         for bomb in pg.sprite.groupcollide(bombs, gravity, True, False).keys():
             exps.add(Explosion(bomb, 50))  # 爆発エフェクト
             score.value += 1
@@ -382,7 +372,6 @@ def main():
                 return
             else:
                 score.value += 1
-=======
         # 防御壁が存在し、爆弾が防御壁に衝突した場合は爆弾を削除する
         for bomb in pg.sprite.groupcollide(bombs, shields, True, False).keys():
             exps.add(Explosion(bomb, 50))  # 爆発エフェクト
@@ -393,7 +382,6 @@ def main():
             pg.display.update()
             time.sleep(2)
             return
->>>>>>> C0A23154/feature5
         
         bird.update(key_lst, screen)
         beams.update()
